@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+:root {
+  color: #5a4747;
+  background: #faf7f5;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 17px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 640px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  background:
+    radial-gradient(circle at 15% 8%, rgba(217, 165, 169, 0.16), transparent 28rem),
+    radial-gradient(circle at 90% 24%, rgba(243, 230, 228, 0.72), transparent 24rem),
+    #faf7f5;
+}
+
+#root {
+  overflow-x: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.fade-in {
+  animation: fade-in 0.75s ease-out both;
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 720ms ease,
+    transform 720ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.soft-card {
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease,
+    border-color 260ms ease,
+    background-color 260ms ease;
+}
+
+.float-card {
+  animation: soft-float 8.5s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.section-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 18rem),
+    radial-gradient(circle at 86% 64%, rgba(217, 165, 169, 0.08), transparent 16rem);
+  opacity: 0.55;
+}
+
+.section-texture > :not([aria-hidden="true"]) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (hover: hover) {
+  .soft-card:hover {
+    transform: translateY(-2px);
+    border-color: #d9a5a9;
+    box-shadow: 0 16px 36px rgba(90, 71, 71, 0.085);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .float-card {
+    animation: none;
+  }
+
+  .soft-card,
+  .soft-card:hover,
+  a {
+    transform: none;
+    transition: none;
+  }
+}
